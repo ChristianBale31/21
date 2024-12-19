@@ -23,7 +23,7 @@ def twentyone(d):
     deck = list(decki.keys())
     y = 0
     x = 0
-    while x or  y <= 21:
+    while x<=21  or  y<= 21 or y<=21 and x <=21:
         choice_player = input("What do you choose? : ")
         house_hand= random.choice(deck)
         random_pick=random.choice(deck)
@@ -32,18 +32,22 @@ def twentyone(d):
         if choice_player == 'go' :
             print(f'you have {card}s in your hand')
             print(f'house has {house_hands}')
-
+            if random_pick == 'A':
+                a =str(input('Is it goint to be 11 or 1'))
+                x+=a
+            if house_hand == 'A' and house_hands > 10:
+                y += 1
             x+= decki[random_pick]
             y+= decki[house_hand]
 
-        elif choice_player == 'quit':
+        elif choice_player == 'quit' or x>21:
             break
         print(f'you have {card}s in your hand and your total is {x}')
         print(f'you have {house_hands}s in your hand and your total is {y}')
-    if x > y :
+    if x > y and x<= 21:
         print('you won')
-    if x < y :
+    if x < y or x>21:
         print('you lost')
     if y == x :
         print('its a tie')
-print(twentyone(card)
+print(twentyone(card))
