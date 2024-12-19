@@ -1,0 +1,49 @@
+#21
+import random
+
+from envs.cs104.Lib.random import choice
+splitted_hand =[]
+house_hands = []
+card =[]
+
+def twentyone(d):
+    decki = {'A':11
+        , 'K':10
+        , '2':2
+        , '3':3
+        , '4':4
+        , '5':5
+        , '6':6
+        , '7':7
+        , '8':8
+        , '9':9
+        , '10':10
+        , 'j':10
+        , 'Q':10}
+    deck = list(decki.keys())
+    y = 0
+    x = 0
+    while x or  y <= 21:
+        choice_player = input("What do you choose? : ")
+        house_hand= random.choice(deck)
+        random_pick=random.choice(deck)
+        card.append(random_pick)
+        house_hands.append(house_hand)
+        if choice_player == 'go' :
+            print(f'you have {card}s in your hand')
+            print(f'house has {house_hands}')
+
+            x+= decki[random_pick]
+            y+= decki[house_hand]
+
+        elif choice_player == 'quit':
+            break
+        print(f'you have {card}s in your hand and your total is {x}')
+        print(f'you have {house_hands}s in your hand and your total is {y}')
+    if x > y :
+        print('you won')
+    if x < y :
+        print('you lost')
+    if y == x :
+        print('its a tie')
+print(twentyone(card)
