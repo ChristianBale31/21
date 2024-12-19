@@ -24,41 +24,40 @@ def twentyone(d):
     y = 0
     x = 0
     s = 0
-    while x<=21  or  y<= 21 or y<=21 and x <=21:
+    while x<=21  or  y<= 21 or y<=21 and x <=21 or x<=21 and y>21:
         choice_player = input("What do you choose? : ")
         house_hand= random.choice(deck)
         random_pick=random.choice(deck)
         card.append(random_pick)
         house_hands.append(house_hand)
-        if choice_player == 'go' :
+        if x > y and x <= 21 or y > 21 and x <= 21:
+            print('you won')
+        elif x < y or x > 21:
+            print('you lost')
+        elif y == x:
+            print('its a tie')
+
+        if choice_player == 'go' and x<=21:
             print(f'you have {card}s in your hand')
             print(f'house has {house_hands}')
+            x += decki[random_pick]
+            y += decki[house_hand]
+
             if random_pick == 'A':
-                a =str(input('Is it going to be 11 or 1'))
+                a =int(input('Is it going to be 11 or 1 : '))
                 x+=a
-            if house_hand == 'A' and house_hands > 10:
+            if house_hand == 'A' and int(house_hand) > 10:
                 y += 1
-            x+= decki[random_pick]
-            y+= decki[house_hand]
             if random_pick == card :
                 c = input('do you want to split')
                 while x<=21  or  s<= 21 or s<=21 and x <=21:
                     if c == 'yes':
-                        choice_player = input("What do you choose? : ")
-                        random_pick = random.choice(deck)
-                        card.append(random_pick)
-                        house_hands.append(house_hand)
-                        house_hand = random.choice(deck)
-                        house_hands.append(house_hand)
-                        
-        elif choice_player == 'quit' or x>21:
+                        twentyone(splitted_hand)
+                    else:
+                        continue
+        elif choice_player == 'quit' :
             break
         print(f'you have {card}s in your hand and your total is {x}')
-        print(f'you have {house_hands}s in your hand and your total is {y}')
-    if x > y and x<= 21:
-        print('you won')
-    if x < y or x>21:
-        print('you lost')
-    if y == x :
-        print('its a tie')
-print(twentyone(card))
+        print(f'opponent has {house_hands}s in your hand and your total is {y}')
+
+twentyone(card)
